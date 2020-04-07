@@ -746,3 +746,9 @@ Recap fundamentals
   Data types
   Typeof operator traits
   Type conversions
+
+## Sources:
+- [JavaScript Info Tutorial](https://javascript.info/)
+- [How JavaScript Works](https://medium.com/better-programming/how-javascript-works-1706b9b66c4d) article on Medium.
+- [MDN](https://developer.mozilla.org/en-US/)
+- [ECMAScript 2015 specification](http://www.ecma-international.org/ecma-262/6.0/)
