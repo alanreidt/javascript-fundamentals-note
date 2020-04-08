@@ -257,13 +257,13 @@ console.log(user.ref); // [object Object]
 ```
 
 ## Closure
-*Closure* is a function, which stores outer variables and has an access to them. In JavaScript every function is a Closure.
+*Closure* is a function, which stores outer variables and has access to them. In JavaScript every function is a Closure.
 
 Closures are frequently used in JavaScript for object data privacy, in event handlers and callback functions, and in partial applications, currying, and other functional programming patterns.
 
 To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
 
-The inner function will have access to the variables in the outer function scope, even after the outer function has been returned.
+The inner function will have access to the variables in the outer function scope, even after the outer function has been returned (will have a reference to the outer function LE).
 
 ```javascript
 const getSecret = (secret) => {
