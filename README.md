@@ -152,9 +152,9 @@ JavaScript has a concurrency model based on an event loop, which is responsible 
 
 A browser, in order to avoid blocking of the stack, handles all time-consuming requests through Web API services. *Web services* are programs, written in some programming language, like C++.
 
-Web API services on their hand, perform required actions — request the data through network, for example (it works as a separated thread) — and then delegate the resulting message (the request's resulting data and the callback function) to a Messages Queue.
+Web API services on their hand, perform required actions — request the data through network, for example (it works as a separated thread) — and then delegate the resulting message (the request's resulting data and the callback function) to a Message Queue.
 
-*Messages Queue* is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
+*Message Queue* is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
 
 When the Execution Stack becomes empty, Event Loop starts to process the Messages on the queue, starting from the oldest one: it removes the message from the queue and calls its corresponding function with the message as an input parameter. As always, calling a function creates a new Execution Context for that function's use.
 
@@ -179,7 +179,7 @@ So, it's a good practice to split your messages into small pieces of code.
 >
 > queue.waitForMessage() waits synchronously for a message to arrive (if one is not already available and waiting to be handled).
 
-> Note: A code, which is ran through an Execution Stack directly, is called *Synchronous*. And that, which makes a path through Messages queue — *Asynchronous*. Because, it's actually handled by some other thread (like Web API) and is performed at the same time, as operations in the Stack is performed.
+> Note: A code, which is ran through an Execution Stack directly, is called *Synchronous*. And that, which makes a path through Message queue — *Asynchronous*. Because, it's actually handled by some other thread (like Web API) and is performed at the same time, as operations in the Stack is performed.
 
 ## Lexical Environment
 A *Lexical Environment* is a specification type used to define the association of Identifiers to specific variables and functions based upon the lexical nesting structure of ECMAScript code.
