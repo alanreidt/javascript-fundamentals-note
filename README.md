@@ -293,12 +293,12 @@ test('Closure for object privacy.', assert => {
 ## Program execution
 It's an important thing to understand how program is executed in JavaScript, this will help you to grasp *Hoisting* and detect errors in the code, correlated to variables.
 
-In the essence, the section will show you how a JS engine uses Lexical Environment, Execution Context and Execution stack during evaluation of a program.
+In the essence, the section will show you how a JS engine uses a Lexical Environment, an Execution Context and an Execution Stack during evaluation of a program.
 
 There are 2 phases of a program execution: the Creation phase and the Execution phase.
 
 ### Creation phase
-During that phase, Execution Context with Lexical Environment are created and Environment Record is pre-populated with all identifiers (variables, functions, etc.) of the context. Then the Execution Context is put into an Execution Stack.
+During that phase, an Execution Context with a Lexical Environment are created and the Environment Record is pre-populated with all identifiers (variables, functions, etc.) of the context. Then the Execution Context is put into an Execution Stack.
 
 Function declarations are declared and initialized (function name and body are stored in the memory). Variables (including function expressions, classes expressions, etc.) too, but: `var` variables are assigned with `undefined` value, `let` and `const` variables with `uninitialized` state.
 
@@ -333,9 +333,9 @@ console.log(d);
 // > d
 ```
 
-When a code block is encountered, a something more interesting happens — current evaluation of the code is paused, and all the process, described here, repeats for that code block:
+When a code block is encountered, a something more interesting happens — current evaluation of the code is paused, and the whole process, described here, repeats for that code block:
 - During the compilation phase, an Execution Context and everything correlated are created and put on top of the Execution Stack.
-- On the execution phase — the code is executed, an information of the evaluation is stored again and if another code block is encountered — all the process repeats for it too.
+- On the execution phase — the code is executed, an information of the evaluation is stored again and if another code block is encountered — the process repeats for it too.
 
 > Note: By the code block I mean each syntactic structure of ECMAScript code, each evaluation of which creates a new Execution Context (and a Lexical Environment), such as: a FunctionDeclaration, a BlockStatement, or a Catch clause of a TryStatement.
 
