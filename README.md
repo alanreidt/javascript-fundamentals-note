@@ -383,11 +383,11 @@ function c(){
 ```
 
 ## Immediate Syntax Errors
-Before we end with a program execution topic, there needs to be said about immediate Syntax Errors.
+Before we end with the program execution topic, there something needs to be said about immediate Syntax Errors.
 
-They actually occur, before any execution of the code, and it seems, that it dramatically contradicts to everything that was said before.
+They occur, before any execution of code, and it seems, that it dramatically contradicts to everything that was said before.
 
-For example, here, SyntaxError will occur before execution of 1st and 2nd lines:
+For example, here, the SyntaxError will occur before execution of 1st and 2nd lines:
 ```javascript
 var greeting = "Hello";
 
@@ -397,7 +397,7 @@ greeting = ."Hi";
 // SyntaxError: unexpected token .
 ```
 
-The thing is I've described a program execution process from a high level abstraction. Using the abstraction you can look at your JavaScript code and detect values of variables at each line of the code, without the need to dive deeper.
+The thing is I've described program execution process from a high level abstraction. Using the abstraction you can look at your JavaScript code and detect values of variables at each line of the code, without the need to dive deeper.
 
 And what actually happens with your code is much more complicated. The process include compilation stage and then execution stage, each of each partly realize everything that was described earlier.
 
