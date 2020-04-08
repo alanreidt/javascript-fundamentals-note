@@ -753,3 +753,4 @@ Recap fundamentals
 - [MDN](https://developer.mozilla.org/en-US/)
 - [ECMAScript 2015 specification](http://www.ecma-international.org/ecma-262/6.0/)
 - [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36) Eric Elliott's article on Medium
+- [What the heck is the event loop anyway?](youtube.com/watch?v=8aGhZQkoFbQ) Philip Roberts explains in the video from JSConf EU
