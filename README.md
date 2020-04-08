@@ -138,25 +138,25 @@ The running execution context is always the top element of this stack.
 Transition of the running execution context status among execution contexts usually occurs in stack-like last-in/first-out manner.
 
 ## Concurrency model (Event Loop)
-JavaScript is a single-threaded programming language, which means it can only perform one instruction at a time.
+JavaScript is a single-threaded programming language (this correlates to presence of only one Execution Stack), which means it can only perform one instruction at a time.
 
-But there is a time-consuming operations. such as network request or some heavy animation calculations and etc., which can block the thread easily, preventing other code from executing.
+But there are time-consuming operations. such as a network request or some heavy animation calculations and etc., which can block the thread easily, preventing other code from executing.
 
-It may be not such a huge problem elsewhere, but for browsers it means that a user won't be able to interact with a web page during that process and that'd be an enormous issue for user experience.
+It may be not such a huge problem elsewhere, but for the browser this means that it won't be able to update elements on a web-page or to react on user events, 'cause it all depend on JavaScript.
 
-> Note: Web-page will be blocked, 'cause a browser calls Rendering functions each 60ms and executes other JS code, as result of events. But as soon as a Stack is blocked, this can't be performed.
+> Note: the browser calls Rendering functions each 60ms.
 
 In order to avoid this, browsers use a *Concurrency Model*.
 
 JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.
 
-A browser, in order to avoid blocking of the stack, handles all time-consuming requests through Web API services (for example, network request). Which are programs, written in some programming language, like C++.
+A browser, in order to avoid blocking of the stack, handles all time-consuming requests through Web API services. *Web services* are programs, written in some programming language, like C++.
 
-Web API services on their hand, perform required actions (request data through network) (it works as a separated thread) and then delegate corresponding callback function (in a form of a message) to a Messages Queue.
+Web API services on their hand, perform required actions — request the data through network, for example (it works as a separated thread) — and then delegate the resulting message (the request's resulting data and the callback function) to a Messages Queue.
 
 *Messages Queue* is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
 
-When the Execution Stack becomes empty, Event Loop starts to process the Messages on the queue, starting from the oldest one: it removes the message from the queue and calls its corresponding function with the message as an input parameter. As always, calling a function creates a new stack frame for that function's use.
+When the Execution Stack becomes empty, Event Loop starts to process the Messages on the queue, starting from the oldest one: it removes the message from the queue and calls its corresponding function with the message as an input parameter. As always, calling a function creates a new Execution Context for that function's use.
 
 The processing of functions continues until the stack is once again empty. Then, the event loop will process the next message in the queue (if there is one).
 
@@ -179,7 +179,7 @@ So, it's a good practice to split your messages into small pieces of code.
 >
 > queue.waitForMessage() waits synchronously for a message to arrive (if one is not already available and waiting to be handled).
 
-> Note: A code, which is ran through an Execution Stack directly, is called *Synchronous*. And that, which makes a path through Messages queue — *Asynchronous*. Because, it's actually handled by some other thread (like Web API) and is performed at the same time, as operation in the Stack is performed.
+> Note: A code, which is ran through an Execution Stack directly, is called *Synchronous*. And that, which makes a path through Messages queue — *Asynchronous*. Because, it's actually handled by some other thread (like Web API) and is performed at the same time, as operations in the Stack is performed.
 
 ## Lexical Environment
 A *Lexical Environment* is a specification type used to define the association of Identifiers to specific variables and functions based upon the lexical nesting structure of ECMAScript code.
