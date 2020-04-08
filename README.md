@@ -752,3 +752,4 @@ Recap fundamentals
 - [How JavaScript Works](https://medium.com/better-programming/how-javascript-works-1706b9b66c4d) article on Medium.
 - [MDN](https://developer.mozilla.org/en-US/)
 - [ECMAScript 2015 specification](http://www.ecma-international.org/ecma-262/6.0/)
+- [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36) Eric Elliott's article on Medium
