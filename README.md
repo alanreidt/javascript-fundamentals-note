@@ -399,7 +399,7 @@ greeting = ."Hi";
 
 The thing is I've described program execution process from a high level abstraction. Using the abstraction you can look at your JavaScript code and detect values of variables at each line of the code, without the need to dive deeper.
 
-And what actually happens with your code is much more complicated. The process include compilation stage and then execution stage, each of each partly realize everything that was described earlier.
+And what actually happens with your code is much more complicated. The process includes compilation stage and then execution stage, and everything that was said above just describes how a machine code structure would look like, after compilation.
 
 But to understand this particular case, you can just remember, the Syntax Error detection happens at the compilation stage of the code — before the process that was described in the previous section.
 
