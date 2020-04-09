@@ -182,7 +182,7 @@ So, it's a good practice to split your messages into small pieces of code.
 > Note: A code, which is ran through an Execution Stack directly, is called *Synchronous*. And that, which makes a path through Message queue — *Asynchronous*. Because, it's actually handled by some other thread (like Web API) and is performed at the same time, as operations in the Stack is performed.
 
 ## Lexical Environment
-A *Lexical Environment* is a specification type used to define the association of Identifiers to specific variables and functions based upon the lexical nesting structure of ECMAScript code.
+A *Lexical Environment* is a specification type used to define the association of identifiers to specific variables and functions based upon the lexical nesting structure of ECMAScript code.
 
 A Lexical Environment is associated with some specific syntactic structure of ECMAScript code such as a FunctionDeclaration, a BlockStatement, or a Catch clause of a TryStatement and a new Lexical Environment is created each time such code is evaluated.
 
