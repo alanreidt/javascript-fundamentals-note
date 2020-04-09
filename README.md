@@ -187,7 +187,7 @@ A *Lexical Environment* is a specification type used to define the association o
 A Lexical Environment is associated with some specific syntactic structure of ECMAScript code such as a FunctionDeclaration, a BlockStatement, or a Catch clause of a TryStatement and a new Lexical Environment is created each time such code is evaluated.
 
 A Lexical Environment can be represented as an object with two parts:
-1. *Environment Record* – an object that stores all local variables as its properties (and some other information like the value of this).
+1. *Environment Record* – an object that stores all local variables as its properties (and some other information like the value of `this`).
 2. A reference to the outer Lexical Environment, the one associated with the outer code.
 
 A “variable” is just a property of the special internal object, Environment Record. “To get or change a variable” means “to get or change a property of that object”.
@@ -203,19 +203,19 @@ There are some a little bit different "types" of Lexical Environment: global env
 *global environment* is a Lexical Environment, associated with the whole script.
 
 It has next differences with the "usual" Lexical Environment:
-1. Its Environment Record stores reference to global object, as a value of "this" identifier. All variables declared inside the script are assigned to the global object.
-2. And its Outer Lexical Environment reference points to null.
+1. Its Environment Record stores reference to global object, as a value of `this` identifier. All variables declared inside the script are assigned to the global object.
+2. And its Outer Lexical Environment reference points to `null`.
 
 #### Function environment
 A *function environment* is a Lexical Environment, which corresponds to the invocation of an ECMAScript function object.
 
 The differences with the "usual" Lexical Environment are:
-1. A function environment may establish a new this binding. It also captures the state necessary to support super method invocations.
-2. A function environment takes reference to the outer Lexical Environment from a function object hidden property \[\[Environment]].
+1. A function environment may establish a new `this` binding. It also captures the state necessary to support `super` method invocations.
+2. A function environment takes reference to the outer Lexical Environment from a function object hidden property `[[Environment]]`.
 
-All functions remember the Lexical Environment in which they were **created** (declared and initialized). They keeps the reference to the Lexical Environment in the hidden property named \[\[Environment]].
+All functions remember the Lexical Environment in which they were **created** (declared and initialized). They keeps the reference to the Lexical Environment in the hidden property named `[[Environment]]`.
 
-That’s how a function remembers where it was created, no matter where it’s called. The \[\[Environment]] reference is set once and forever at a function creation time.
+That’s how a function remembers where it was created, no matter where it’s called. The `[[Environment]]` reference is set once and forever at a function creation time.
 
 **Notes**:
 
