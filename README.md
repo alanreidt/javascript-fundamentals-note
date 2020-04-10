@@ -257,7 +257,7 @@ console.log(user.ref); // [object Object]
 ```
 
 ## Closure
-*Closure* is a function, which stores outer variables and has access to them. In JavaScript every function is a Closure.
+A *Closure* is a function, which has access to the outer variables. In JavaScript every function is a Closure.
 
 Closures are frequently used in JavaScript for object data privacy, in event handlers and callback functions, and in partial applications, currying, and other functional programming patterns.
 
@@ -290,6 +290,7 @@ test('Closure for object privacy.', assert => {
   assert.end();
 });
 ```
+
 ## Program execution
 It's an important thing to understand how program is executed in JavaScript, this will help you to grasp *Hoisting* and detect errors in the code, correlated to variables.
 
