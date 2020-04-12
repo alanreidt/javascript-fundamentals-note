@@ -294,7 +294,7 @@ test('Closure for object privacy.', assert => {
 ## Program execution
 It's an important thing to understand how program is executed in JavaScript, this will help you to grasp *Hoisting* and detect errors in the code, correlated to variables.
 
-In the essence, the section will show you how a JS engine uses a Lexical Environment, an Execution Context and an Execution Stack during evaluation of a program.
+In the essence, the section will show you how JS engines use a Lexical Environment, an Execution Context and an Execution Stack during evaluation of a program.
 
 There are 2 phases of a program execution: the Creation phase and the Execution phase.
 
