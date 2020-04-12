@@ -263,7 +263,7 @@ Closures are frequently used in JavaScript for object data privacy, in event han
 
 To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
 
-The inner function will have access to the variables in the outer function scope, even after the outer function has been returned (will have a reference to the outer function LE).
+The inner function will have access to the variables in the outer function scope, even after the outer function has been returned (it'll have a reference to the outer function LE).
 
 ```javascript
 const getSecret = (secret) => {
