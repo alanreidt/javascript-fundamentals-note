@@ -454,9 +454,9 @@ saySomething();
 ```
 
 ## A value of this identifier
-There are only 2 types of the Lexical Environment, which can specify a value of `this` identifier:
+There are only 2 types of the Lexical Environment, which specify a value of `this` identifier:
 - the global environment
-- the function environment (except an arrow function)
+- the function environment (except an arrow function's)
 
 In the global environment, `this` identifier refers to the global object, no matter what mode (strict/non-strict) you use. It's the `window` object inside a browser.
 
@@ -468,7 +468,7 @@ There are 4 types of the invocation:
 - Constructor invocation: `new myFunction()`
 - DOM event handler invocation: `document.addEventListener('click', myFunction)` or `<button onclick="myFunction()"></button>`
 
-And also, `this` value can be bound manually, using `bind()`, `call()` or `apply()` methods.
+Or, it can be bound manually, using `bind()`, `call()` or `apply()` methods.
 
 ### Simple invocation
 In the case of a simple function invocation, `this` will point out to the global object:
