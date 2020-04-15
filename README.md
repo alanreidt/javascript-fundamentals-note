@@ -454,22 +454,21 @@ saySomething();
 ```
 
 ## A value of this identifier
-In the global context (inside the script), `this` refers to the global object (it's the window object inside browsers),no matter what mode you use.
+There are only 2 types of the Lexical Environment, which can specify a value of `this` identifier:
+- the global environment
+- the function environment (except an arrow function)
 
-The arrow function doesn't have `this` identifier. It takes it from an outer Lexical Environment. So, it depends on where it was declared.
+In the global environment, `this` identifier refers to the global object, no matter what mode (strict/non-strict) you use. It's the `window` object inside a browser.
 
-In other words:
-- `this` will refer to the global object, if an arrow function was declared inside the global context;
-- the same is true, if an arrow function was declared as an object's method — objects don't specify `this` inside their LE;
-- `this` will refer to an object, if an arrow function was declared inside one of its methods (or inside the Class constructor).
+The value of `this` identifier inside the function environment depends on how the corresponding function object was called (invoked).
 
-The function declaration (or expression), on the other hand, depends on how it was called (invoked). So, no matter where it was declared, `this` in such a function will be assigned based upon an invocation.
-
-There are 4 ways to do it:
+There are 4 types of the invocation:
 - Simple invocation: `myFunction()`
 - Object method invocation: `myObject.myFunction()`
 - Constructor invocation: `new myFunction()`
 - DOM event handler invocation: `document.addEventListener('click', myFunction)` or `<button onclick="myFunction()"></button>`
+
+And also, `this` value can be bound manually, using `bind()`, `call()` or `apply()` methods.
 
 ### Simple invocation
 In the case of a simple function invocation, `this` will point out to the global object:
@@ -679,6 +678,12 @@ new bound(); // type: undefined
 Use wrapper as one of the possibilities to preserve this of the method.
 
 ## Arrow Functions
+The arrow function doesn't have `this` identifier. It takes it from an outer Lexical Environment. So, it depends on where it was declared.
+
+In other words:
+- `this` will refer to the global object, if an arrow function was declared inside the global context;
+- the same is true, if an arrow function was declared as an object's method — objects don't specify `this` inside their LE;
+- `this` will refer to an object, if an arrow function was declared inside one of its methods (or inside the Class constructor).
 
 **Notes**:
 
