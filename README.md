@@ -456,14 +456,14 @@ saySomething();
 ## A value of this identifier
 In the global context (inside the script), `this` refers to the global object (it's the window object inside browsers),no matter what mode you use.
 
-Arrow function doesn't have `this` identifier. It takes it from an outer Lexical Environment. So, it depends on where it was declared.
+The arrow function doesn't have `this` identifier. It takes it from an outer Lexical Environment. So, it depends on where it was declared.
 
 In other words:
-- `this` will refer to the global object, if arrow function was declared inside the global context;
-- the same is true, if arrow function was declared as an object's method — an object has no `this` inside its LE;
-- `this` will refer to an object, if arrow function was declared inside one of its methods (or inside Class constructor).
+- `this` will refer to the global object, if an arrow function was declared inside the global context;
+- the same is true, if an arrow function was declared as an object's method — objects don't specify `this` inside their LE;
+- `this` will refer to an object, if an arrow function was declared inside one of its methods (or inside the Class constructor).
 
-Function declaration and expression, on the other hand, depends on how it was called (invoked). So, no matter where it was declared, `this` in such a function will be assigned after (during) an invocation.
+The function declaration (or expression), on the other hand, depends on how it was called (invoked). So, no matter where it was declared, `this` in such a function will be assigned based upon an invocation.
 
 There are 4 ways to do it:
 - Simple invocation: `myFunction()`
@@ -481,7 +481,9 @@ function myFunction() {
 console.log(myFunction()); // true
 ```
 
-But, the result is different, if we use a `strict mode` statement:
+But, the result is different, if we use a `strict mode` statement.
+
+In this case, `this` will be equal to `undefined`:
 ```javascript
 function myFunction() {
   "use strict";
@@ -491,8 +493,6 @@ function myFunction() {
 
 console.log(myFunction()); // true
 ```
-
-In this case, `this` will be equal to `undefined`.
 
 ### Object method invocation
 If you call a function as a method of an object, `this` will refer to the object:
