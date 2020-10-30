@@ -307,7 +307,7 @@ The process is called the **Hoisting**. 'Cause, so-called action can help you vi
 
 **Notes**:
 
-[Additional examples are here](../Hoisting_Summary.js)
+[Additional examples are here](./hoisting_summary.js)
 
 Describe behavior of typeof operator.
 mention precedence of a function against variable with the same name.
