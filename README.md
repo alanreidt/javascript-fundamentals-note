@@ -742,17 +742,6 @@ for...in loop выводит как свойства объекта, так и �
 
 Object.create для создания объекта с определенным прототипом;
 
-
-Recap important parts (use FSD roadmap)
-  Prototypes
-  Arrays
-Recap fundamentals
-  Data
-  Expressions
-  Data types
-  Typeof operator traits
-  Type conversions
-
 ## Sources
 - [JavaScript Info Tutorial](https://javascript.info/)
 - [How JavaScript Works](https://medium.com/better-programming/how-javascript-works-1706b9b66c4d) article on Medium.
