@@ -693,13 +693,24 @@ Arrow functions can't be named like NFE.
 Can't be called as a Constructor (using new).
 `bind()`, `call()`, and `apply()` cannot be used to pass a custom this value to arrow functions.
 
+## Draft
+
+Type Conversions
+To number conversion.
+
+`undefined` is converted to `NaN`.
+
+When converting a string, then spaces from start and end of the string are removed, and if the remaining part can be converted to a number, the number is returned. Otherwise, the result would be `NaN`. In the case of an empty string, the result would be `0`.
+
 Comparisons
 
-Equality operator (==) converts different types to number type.
+Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
 
 Strict equality operator (===) compares operands without conversion.
 
 Objects are compared by a reference for both comparison operators.
+
+The is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
 
 
 Рекурсия — это функция вызывающая сама себя.
