@@ -692,6 +692,72 @@ Arrow functions can't be named like NFE.
 Can't be called as a Constructor (using new).
 `bind()`, `call()`, and `apply()` cannot be used to pass a custom this value to arrow functions.
 
+## Promises
+The syntax is:
+```js
+const promise = new Promise((resolve, reject) => {
+  // executor (the producing code, "singer")
+});
+```
+
+The executor code is usually asynchronous and calls either the resolve or the reject callback, after its finish. The first one is called in the case of success, the second one — in the case of error.
+
+The resolve and the reject callbacks accept only 1 argument: value or error (preferably, Error object), respectively.
+
+For example:
+```js
+const promise = new Promise((resolve, reject) => {
+  // the function is executed automatically when the promise is constructed
+
+  // after 1 second signal that the job is done with the result "done"
+  setTimeout(() => resolve("done"), 1000);
+});
+```
+
+### Consumers: then, catch, finally
+Promise object serves as a link between the executor function and consumer functions. The consumer functions can be subscribed via `.then`, `.catch` and `.finally` methods.
+
+#### then
+The first argument of `.then` method is a callback function, which is executed, if the promise was resolved (completed with `fulfilled` state) and receives the result.
+
+The seconds one — if the promise was rejected (completed with `rejected` state) and receives the error.
+
+For instance, here’s a reaction to a successfully resolved promise:
+```js
+let promise = new Promise(function(resolve, reject) {
+  setTimeout(() => resolve("done!"), 1000);
+});
+
+// resolve runs the first function in .then
+promise.then(
+  result => alert(result), // shows "done!" after 1 second
+  error => alert(error) // doesn't run
+);
+```
+
+#### catch
+If we’re interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same.
+
+### finally
+The method runs, when the promise is settled: be it resolve or reject.
+
+`.finally` is a good handler for performing clean up, e.g. stopping our loading indicators, as they're not needed anymore, no matter what the outcome.
+
+For example:
+```js
+new Promise((resolve, reject) => {
+  /* do something that takes time, and then call resolve/reject */
+})
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we process the result/error
+  .then(result => show result, err => show error)
+```
+
+The main traits of the method are:
+- It accepts no arguments, as they're not needed for its functionality,
+- It passes the result and the error to the next handler.
+
 ## Draft
 
 Type Conversions
