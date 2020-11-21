@@ -301,7 +301,7 @@ There are 2 phases of a program execution: the Creation phase and the Execution 
 ### Creation phase
 During that phase, an Execution Context with a Lexical Environment are created and the Environment Record is pre-populated with all identifiers (variables, functions, etc.) of the context. Then the Execution Context is put into an Execution Stack.
 
-Function declarations are declared and initialized (function name and body are stored in the memory). Variables (including function expressions, classes expressions, etc.) too, but: `var` variables are assigned with `undefined` value, `let` and `const` variables with `uninitialized` state.
+Variables are initialized first, then functions (so that a function would rewrite the variable with the same name). Function declarations are declared and initialized (function name and body are stored in the memory). Variables (including function expressions, classes expressions, etc.) too, but: `var` variables are assigned with `undefined` value, `let` and `const` variables with `uninitialized` state.
 
 The process is called the **Hoisting**. 'Cause, so-called action can help you visualize what is happening.
 
@@ -310,7 +310,6 @@ The process is called the **Hoisting**. 'Cause, so-called action can help you vi
 [Additional examples are here](./hoisting_summary.js)
 
 Describe behavior of typeof operator.
-mention precedence of a function against variable with the same name.
 
 ### Execution phase
 During this phase, execution of the code happens. Code is evaluated line by line. And every necessary execution information is stored in the Execution Context (current line of the code, for example).
