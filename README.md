@@ -165,6 +165,25 @@ Which gives us an Asynchronous-like code.
 ### requestAnimationFrame
 Queues the callback in connection with page rendering (actually, before the render), usually 60 frames a second (normal frequency of a display). `setTimeout` tasks in comparison, run every time the execution stack becomes empty, so doing things, that a user can't see.
 
+## Microtasks
+Message queue tasks: The event loop executes only one task, if it queues a new task, the loop places it at the end of the stack and proceeds its way until the next lap.
+
+Animation callbacks (requestAnimationFrame): the event loop executes each of the queued tasks, places new tasks at the end of the stack and proceeds its way until the next lap.
+
+Microtasks: The event loop executes all of the queued tasks, including every new task, until the job done. Then it proceeds its way.
+
+user click and manual click events are different
+
+### Examples
+This, will set only the last transform value:
+```js
+button.addEventListener('click', () => {
+  box.style.transform = 'translateX(1000px)';
+  box.style.transition = 'transform 1s ease-in-out';
+  box.style.transform = 'translateX(500px)';
+})
+```
+
 **Notes**:
 
 A setTimeout function correlates to Web API and hence is executed asynchronously. And because of that, it's time (used as a second parameter) means the minimum delay after which the message will actually be pushed into the queue.
