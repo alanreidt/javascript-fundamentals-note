@@ -758,6 +758,15 @@ The main traits of the method are:
 - It accepts no arguments, as they're not needed for its functionality,
 - It passes the result and the error to the next handler.
 
+## Promises API
+There are several useful static methods on Promise class, that allows you to handle multiple promises in the single consumer functions chain.
+
+Each of the static methods accepts an array of promises and:
+
+Promise.all will wait until every promise isn't settled and then will pass an array of results or errors to the consuming function.
+
+Promise.race, on the other hand, runs as soon as any of the promises is settled and will pass that promise's result or error, accordingly.
+
 ## Draft
 
 Type Conversions
