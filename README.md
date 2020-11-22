@@ -162,6 +162,9 @@ The processing of functions continues until the stack is once again empty. Then,
 
 Which gives us an Asynchronous-like code.
 
+### requestAnimationFrame
+Queues the callback in connection with page rendering (actually, before the render), usually 60 frames a second (normal frequency of a display). `setTimeout` tasks in comparison, run every time the execution stack becomes empty, so doing things, that a user can't see.
+
 **Notes**:
 
 A setTimeout function correlates to Web API and hence is executed asynchronously. And because of that, it's time (used as a second parameter) means the minimum delay after which the message will actually be pushed into the queue.
