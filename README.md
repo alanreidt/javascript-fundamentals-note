@@ -142,7 +142,7 @@ JavaScript is a single-threaded programming language (this correlates to presenc
 
 But there are time-consuming operations. such as a network request or some heavy animation calculations and etc., which can block the thread easily, preventing other code from executing.
 
-It may be not such a huge problem elsewhere, but for the browser this means that it won't be able to update elements on a web-page or to react on user events, 'cause it all depend on JavaScript.
+It may not be such a huge problem elsewhere, but for the browser this means that it won't be able to update elements on a web-page or to react to user events, 'cause it all depend on JavaScript.
 
 > Note: the browser calls Rendering functions each 60ms.
 
