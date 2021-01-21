@@ -706,6 +706,8 @@ In other words:
 - the same is true, if an arrow function was declared as an object's method — objects don't specify `this` inside their LE;
 - `this` will refer to an object, if an arrow function was declared inside one of its methods (or inside the Class constructor).
 
+Also, arrow functions are anonymous functions, it's a good practice to use them sparingly.
+
 **Notes**:
 
 Don't have `this` in LE.
