@@ -234,6 +234,72 @@ Most of these rules are easy to understand and memorize. The notable exceptions 
 - `undefined` is `NaN` as a number, not `0`.
 - `"0"` and space-only strings like `" "` are true as a boolean.
 
+## Object to primitive conversion
+The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+
+There are 3 types (hints) of it:
+- `"string"` (for alert and other operations that need a string)
+- `"number"` (for maths)
+- `"default"` (few operators, see below)
+
+The specification describes explicitly which operator uses which hint.
+
+> **No "boolean" hint**
+>
+> Please note – there are only three hints. It’s that simple.
+>
+> There is no “boolean” hint (all objects are true in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
+
+The conversion algorithm is:
+1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
+2. Otherwise if hint is `"string"`
+- try `obj.toString()` and `obj.valueOf()`, whatever exists.
+3. Otherwise if hint is `"number"` or `"default"`
+- try `obj.valueOf()` and `obj.toString()`, whatever exists.
+
+By default, a plain object has following `toString` and `valueOf` methods:
+- The `toString` method returns a string "[object Object]".
+- The `valueOf` method returns the object itself.
+
+Here’s the demo:
+```js
+let user = {name: "John"};
+
+alert(user); // [object Object]
+alert(user.valueOf() === user); // true
+```
+So if we try to use an object as a string, like in an alert or so, then by default we see `[object Object]`.
+
+And the default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don’t ask me why, that’s for historical reasons. So we can assume it doesn’t exist.
+
+In practice, it’s often enough to implement only `obj.toString()` as a “catch-all” method for all conversions that return a “human-readable” representation of an object, for logging or debugging purposes.
+
+### The "default" hint
+Occurs in rare cases when the operator is “not sure” what type to expect.
+
+For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
+
+Also, if an object is compared using == with a string, number or a symbol, it’s also unclear which conversion should be done, so the `"default"` hint is used.
+```js
+// binary plus uses the "default" hint
+let total = obj1 + obj2;
+
+// obj == number uses the "default" hint
+if (user == 1) { ... };
+```
+The greater and less comparison operators, such as `<` `>`, can work with both strings and numbers too. Still, they use the `"number"` hint, not `"default"`. That’s for historical reasons.
+
+In practice though, we don’t need to remember these peculiar details, because all built-in objects except for one case (Date object, we’ll learn it later) implement `"default"` conversion the same way as `"number"`. And we can do the same.
+
+### Notes
+Object is converted to the string `'object Object'`. Array is converted to an empty string `''`.
+
+As a result:
+```js
+console.log({} + {}) // NaN (converted to '', then to NaN)
+console.log([] + []) // '' (concatenated 2 empty strings)
+```
+
 ## Comparisons
 Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
 
