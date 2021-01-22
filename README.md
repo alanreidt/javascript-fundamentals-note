@@ -173,6 +173,81 @@ The `typeof` operator allows us to see which type is stored in a variable.
 - For `null` returns `"object"` – this is an error in the language, it’s not actually an object.
 - For functions returns `"function"` – this is also an error, there’s no special “function” type in JavaScript. Functions belong to the object type. But typeof treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn’t correct, but can be convenient in practice.
 
+## Type Conversions
+The three most widely used type conversions are to string, to number, and to boolean.
+
+**String Conversion** – occurs when we output something. Can be performed with String(value). The conversion to string is usually obvious for primitive values.
+
+**Numeric Conversion** – occurs in math operations. Can be performed with Number(value).
+
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Becomes…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>undefined</code></td>
+<td><code>NaN</code></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>true&nbsp;/&nbsp;false</code></td>
+<td><code>1 / 0</code></td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td>The string is read “as is”, whitespaces from both sides are ignored. An empty string becomes <code>0</code>. An error gives <code>NaN</code>.</td>
+</tr>
+</tbody>
+</table>
+<br>
+
+**Boolean Conversion** – occurs in logical operations. Can be performed with Boolean(value).
+
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Becomes…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>, <code>""</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>any other value</td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+<br>
+
+Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
+- `undefined` is `NaN` as a number, not `0`.
+- `"0"` and space-only strings like `" "` are true as a boolean.
+
+## Comparisons
+Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
+
+```js
+console.log({} == 1) // false
+console.log({} == {}) // false
+```
+
+Strict equality operator (===) compares operands without conversion.
+
+Objects are compared by a reference for both comparison operators.
+
+The is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
+
 ## Preface
 The purpose of this article is to describe the essence of how JS works in an actual environment (mostly in a browser).
 
@@ -903,25 +978,6 @@ Promise.all will wait until every promise isn't settled and then will pass an ar
 Promise.race, on the other hand, runs as soon as any of the promises is settled and will pass that promise's result or error, accordingly.
 
 ## Draft
-
-Type Conversions
-To number conversion.
-
-`undefined` is converted to `NaN`.
-
-When converting a string, then spaces from start and end of the string are removed, and if the remaining part can be converted to a number, the number is returned. Otherwise, the result would be `NaN`. In the case of an empty string, the result would be `0`.
-
-Comparisons
-
-Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
-
-Strict equality operator (===) compares operands without conversion.
-
-Objects are compared by a reference for both comparison operators.
-
-The is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
-
-
 The function declaration becoming block scoped, if used in strict mode.
 
 Рекурсия — это функция вызывающая сама себя.
