@@ -54,6 +54,100 @@ let return = 5; // also can't name it "return", error!
 
 A variable name should have a clean, obvious meaning, describing the data that it stores.
 
+### Ways to declare a variable and their differences
+There are several ways to declare a variable in Javascript:
+- Using no statement in non-strict mode,
+- Using `var` statement,
+- Using `let` statement,
+- Using `const` statement.
+
+#### No statement
+Declaring a variable without any statement will create a global variable:
+```js
+name = 'Pete';
+
+console.log('Pete'); // Pete
+```
+
+In strict mode you'll get an error:
+```js
+'use strict';
+
+name = 'Pete'; // Error
+
+console.log('Pete');
+```
+
+#### "var" statement
+`var` is different from `let` and `const` in a few ways:
+
+1. It's function scoped. `let` and `const` are block scoped on the other hand.
+```js
+function sayHi() {
+  if (true) {
+    var phrase = "Hello";
+  }
+
+  alert(phrase); // works
+}
+
+sayHi();
+alert(phrase); // ReferenceError: phrase is not defined
+```
+2. It tolerates redeclarations.
+
+If we declare the same variable with let twice in the same scope, that’s an error:
+```js
+let user;
+let user; // SyntaxError: 'user' has already been declared
+```
+
+With var, we can redeclare a variable any number of times. If we use var with an already-declared variable, it’s just ignored:
+```js
+var user = "Pete";
+
+var user = "John"; // this "var" does nothing (already declared)
+// ...it doesn't trigger an error
+
+alert(user); // John
+```
+
+3. `var` variables can be declared below their use.
+
+`var` declarations are processed when the function starts (or script starts for globals).
+
+In other words, var variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
+
+So this code works:
+```js
+function sayHi() {
+  phrase = "Hello";
+
+  alert(phrase);
+
+  var phrase;
+}
+sayHi();
+```
+
+…Or even this (remember, code blocks are ignored):
+```js
+function sayHi() {
+  phrase = "Hello"; // (*)
+
+  if (false) {
+    var phrase;
+  }
+
+  alert(phrase);
+}
+sayHi();
+```
+People also call such behavior “hoisting” (raising), because all var are “hoisted” (raised) to the top of the function.
+
+So in the example above, if (false) branch never executes, but that doesn’t matter. The var inside it is processed in the beginning of the function, so at the moment of (*) the variable exists.
+
+### Notes
 Describe behavior of Variables: var (scope), let, const (scope).
 
 Re-declaration works with var, but not with let and const.
@@ -810,6 +904,8 @@ Objects are compared by a reference for both comparison operators.
 
 The is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
 
+
+The function declaration becoming block scoped, if used in strict mode.
 
 Рекурсия — это функция вызывающая сама себя.
 
