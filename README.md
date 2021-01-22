@@ -156,6 +156,23 @@ Re-declaration works with var, but not with let and const.
 
 `const varName; // SyntaxError`
 
+## Data types
+There are 8 basic data types in JavaScript.
+- `number` for numbers of any kind: integer or floating-point, integers are limited by `±(253-1)`.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have zero or more characters, there’s no separate single-character type.
+- `boolean` for `true/false`.
+- `null` for unknown values – a standalone type that has a single value `null`.
+- `undefined` for unassigned values – a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+
+The `typeof` operator allows us to see which type is stored in a variable.
+- Two forms: `typeof x` or `typeof(x)`.
+- Returns a string with the name of the type, like `"string"`.
+- For `null` returns `"object"` – this is an error in the language, it’s not actually an object.
+- For functions returns `"function"` – this is also an error, there’s no special “function” type in JavaScript. Functions belong to the object type. But typeof treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn’t correct, but can be convenient in practice.
+
 ## Preface
 The purpose of this article is to describe the essence of how JS works in an actual environment (mostly in a browser).
 
