@@ -176,9 +176,9 @@ The `typeof` operator allows us to see which type is stored in a variable.
 ## Type Conversions
 The three most widely used type conversions are to string, to number, and to boolean.
 
-**String Conversion** – occurs when we output something. Can be performed with String(value). The conversion to string is usually obvious for primitive values.
+**String Conversion** – occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
-**Numeric Conversion** – occurs in math operations. Can be performed with Number(value).
+**Numeric Conversion** – occurs in math operations. Can be performed with `Number(value)`.
 
 <table>
 <thead>
@@ -208,7 +208,7 @@ The three most widely used type conversions are to string, to number, and to boo
 </table>
 <br>
 
-**Boolean Conversion** – occurs in logical operations. Can be performed with Boolean(value).
+**Boolean Conversion** – occurs in logical operations. Can be performed with `Boolean(value)`.
 
 <table>
 <thead>
