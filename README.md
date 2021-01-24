@@ -300,6 +300,25 @@ console.log({} + {}) // NaN (converted to '', then to NaN)
 console.log([] + []) // '' (concatenated 2 empty strings)
 ```
 
+# Basic operators
+Usually, the plus operator `+` sums numbers.
+
+But, if the binary `+` is applied to strings, it merges (concatenates) them:
+```js
+let s = "my" + "string";
+alert(s); // mystring
+```
+
+Note that if any of the operands is a string, then the other one is converted to a string too.
+
+For example:
+```js
+alert( '1' + 2 ); // "12"
+alert( 2 + '1' ); // "21"
+```
+
+See, it doesn’t matter whether the first operand is a string or the second one.
+
 ## Comparisons
 Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
 
