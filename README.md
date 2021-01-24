@@ -320,18 +320,47 @@ alert( 2 + '1' ); // "21"
 See, it doesn’t matter whether the first operand is a string or the second one.
 
 ## Comparisons
-Equality operator (==) and other comparisons (< >, <= >=) convert different types to a number type.
+### Boolean is the result
+All comparison operators return a boolean value.
 
+### String comparison
+To see whether a string is greater than another, JavaScript uses the so-called “dictionary” or “lexicographical” order.
+
+In other words, strings are compared letter-by-letter.
+
+For example:
 ```js
-console.log({} == 1) // false
-console.log({} == {}) // false
+alert( 'Z' > 'A' ); // true
+alert( 'Glow' > 'Glee' ); // true
+alert( 'Bee' > 'Be' ); // true
 ```
 
-Strict equality operator (===) compares operands without conversion.
+Equality operator (`==`) and other comparisons (`<` `>`, `<=` `>=`) convert different types to a number type.
 
-Objects are compared by a reference for both comparison operators.
+For example:
+```js
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+```
 
-The is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
+Strict equality operator (`===`) compares operands without conversion.
+
+???Objects are compared by a reference for both comparison operators.
+
+There is a special case for a non-strict equality (and only for it) check with `null` and `undefined`: They are equal to each other, but not any other value.
+
+For example:
+```js
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+```
+
+Mathematically, that’s strange. The last result states that "`null` is greater than or equal to zero", so in one of the comparisons above it must be `true`, but they are both `false`.
+
+The reason is that an equality check `==` and comparisons `>` `<` `>=` `<=` work differently. Comparisons convert `null` to a number, treating it as `0`. That’s why (3) `null >= 0` is `true` and (1) `null > 0` is `false`.
+
+On the other hand, the equality check `==` for `undefined` and `null` is defined such that, without any conversions, they equal each other and don’t equal anything else. That’s why (2) `null == 0` is `false`.
 
 ## Preface
 The purpose of this article is to describe the essence of how JS works in an actual environment (mostly in a browser).
