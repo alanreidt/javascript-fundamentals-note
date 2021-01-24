@@ -16,7 +16,7 @@ Strict mode is supported by all modern browsers. But, it's turned off in Browser
 
 The mode can be enabled by specifying string "use strict" ('use strict') at the top (**before any line of code**) of an **appropriate** code block.
 
-> Note: strict mode applies to entire scripts or to individual functions. It doesn't apply to block statements enclosed in {} braces; attempting to apply it to such contexts does nothing. `eval` code, Function code, event handler attributes, strings passed to `WindowTimers.setTimeout()`, and related functions are entire scripts, and invoking strict mode in them works as expected.
+> Note: strict mode applies to entire scripts or to individual functions. It doesn't apply to block statements enclosed in `{}` braces; attempting to apply it to such contexts does nothing. `eval` code, Function code, event handler attributes, strings passed to `WindowTimers.setTimeout()`, and related functions are entire scripts, and invoking strict mode in them works as expected.
 
 There is 2 blocks where you can declare use strict:
 
@@ -30,11 +30,12 @@ Also, it's worth to know that use strict is enabled by default for Classes and E
 ## Variables
 
 There are two limitations on variable names in JavaScript:
-1. The name must contain only letters, digits, or the symbols $ and _.
+1. The name must contain only letters, digits, or the symbols `$` and `_`.
 2. The first character must not be a digit.
 
 Case matters:
-Variables named apple and AppLE are two different variables.
+
+Variables named `apple` and `AppLE` are two different variables.
 
 Non-Latin letters are allowed, but not recommended:
 ```javascript
@@ -44,7 +45,7 @@ let 我 = '...';
 
 There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
 
-For example: let, class, return, and function are reserved.
+For example: `let`, `class`, `return`, and `function` are reserved.
 
 The code below gives a syntax error:
 ```javascript
@@ -116,7 +117,7 @@ alert(user); // John
 
 `var` declarations are processed when the function starts (or script starts for globals).
 
-In other words, var variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
+In other words, `var` variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
 
 So this code works:
 ```js
@@ -145,20 +146,19 @@ sayHi();
 ```
 People also call such behavior “hoisting” (raising), because all var are “hoisted” (raised) to the top of the function.
 
-So in the example above, if (false) branch never executes, but that doesn’t matter. The var inside it is processed in the beginning of the function, so at the moment of (*) the variable exists.
+So in the example above, `if (false)` branch never executes, but that doesn’t matter. The var inside it is processed in the beginning of the function, so at the moment of (*) the variable exists.
 
 ### Notes
-Describe behavior of Variables: var (scope), let, const (scope).
+Describe behavior of variables: let, const (scope).
 
-Re-declaration works with var, but not with let and const.
-
-`let varName; // set to undefined`
-
-`const varName; // SyntaxError`
+```js
+let varName; // set to undefined
+const varName; // SyntaxError
+```
 
 ## Data types
 There are 8 basic data types in JavaScript.
-- `number` for numbers of any kind: integer or floating-point, integers are limited by `±(253-1)`.
+- `number` for numbers of any kind: integer or floating-point, integers are limited by `±(2^53 - 1)`.
 - `bigint` is for integer numbers of arbitrary length.
 - `string` for strings. A string may have zero or more characters, there’s no separate single-character type.
 - `boolean` for `true/false`.
@@ -335,7 +335,7 @@ alert( 'Glow' > 'Glee' ); // true
 alert( 'Bee' > 'Be' ); // true
 ```
 
-Equality operator (`==`) and other comparisons (`<` `>`, `<=` `>=`) convert different types to a number type.
+Equality operator (`==`) and other comparisons (`<` `>`, `<=` `>=`) convert **different types** to a number type.
 
 For example:
 ```js
@@ -384,7 +384,7 @@ To analyze Scope and correlated, it's easier to treat program processing by JS, 
 
 Take, for example:
 
-**Syntax Errors from the Start**
+### Syntax Errors from the Start
 Consider this program:
 ```javascript
 var greeting = "Hello";
@@ -397,7 +397,7 @@ greeting = ."Hi";
 
 In fact, the only way the JS engine could know about the syntax error on the third line, before executing the first and second lines, is by the JS engine first parsing the entire program before any of it is executed.
 
-**Early Errors**
+### Early Errors
 Next, consider:
 ```javascript
 console.log("Howdy");
@@ -413,9 +413,9 @@ function saySomething(greeting,greeting) {
 ```
 
 ## Execution context
-An *execution context* is a specification device that is used to track the runtime evaluation of code by an ECMAScript implementation.
+An *Execution context* is a specification device that is used to track the runtime evaluation of code by an ECMAScript implementation.
 
-Execution context can be represented as an object with the next fields:
+An Execution context can be represented as an object with the next fields:
 - Code evaluation state: contains information (state) required to perform, suspend and resume evaluation of the code (for example, current line of the code);
 - Function: equals to null or to a function object;
 - Realm;
@@ -431,14 +431,14 @@ A new execution context is created whenever control is transferred from the exec
 What the difference between LexicalEnvironment and VariableEnvironment components of execution context?
 
 ## Execution stack
-A *Execution stack* is used to track Execution contexts.
+*Execution stack* is used to track Execution contexts.
 
-The running execution context is always the top element of this stack.
+The running Execution context is always the top element of this stack.
 
-Transition of the running execution context status among execution contexts usually occurs in stack-like last-in/first-out manner.
+Transition of the running Execution context status among Execution contexts usually occurs in stack-like last-in/first-out manner.
 
 ## Concurrency model (Event Loop)
-JavaScript is a single-threaded programming language (this correlates to presence of only one Execution Stack), which means it can only perform one instruction at a time.
+JavaScript is a single-threaded programming language — this correlates to the presence of only one Execution Stack (in order to avoid racing conditions for environment resources) — that means it can only perform one instruction at a time.
 
 But there are time-consuming operations. such as a network request or some heavy animation calculations and etc., which can block the thread easily, preventing other code from executing.
 
@@ -446,19 +446,19 @@ It may not be such a huge problem elsewhere, but for the browser this means that
 
 > Note: the browser calls Rendering functions each 60ms.
 
-In order to avoid this, browsers use a *Concurrency Model*.
+In order to avoid this, browsers use *Concurrency Model*.
 
-JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.
+JavaScript has the Concurrency model based on an Event loop, that is responsible for executing code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.
 
-A browser, in order to avoid blocking of the stack, handles all time-consuming requests through Web API services. *Web services* are programs, written in some programming language, like C++.
+A browser, in order to avoid blocking of the stack, handles all time-consuming requests through Web API services. the *Web API services* are programs, written in some programming language, like C++.
 
-Web API services on their hand, perform required actions — request the data through network, for example (it works as a separated thread) — and then delegate the resulting message (the request's resulting data and the callback function) to a Message Queue.
+The Web API services on their hand, perform required actions — request data through the network, for example (it works as a separated thread) — and then delegate the resulting message (the request's resulting data and a callback function) to a Message Queue.
 
-*Message Queue* is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
+The *Message Queue* is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
 
-When the Execution Stack becomes empty, Event Loop starts to process the Messages on the queue, starting from the oldest one: it removes the message from the queue and calls its corresponding function with the message as an input parameter. As always, calling a function creates a new Execution Context for that function's use.
+When Execution Stack becomes empty, an Event Loop starts to process Messages from a Message queue, starting from the oldest one: it removes the Message from the Queue and calls its corresponding function with the Message as an input parameter. As always, calling a function creates a new Execution Context for that function's use.
 
-The processing of functions continues until the stack is once again empty. Then, the event loop will process the next message in the queue (if there is one).
+The processing of functions continues until the Execution stack is once again empty. Then, the Event loop will process the next Message in the Queue (if there is one).
 
 Which gives us an Asynchronous-like code.
 
@@ -466,15 +466,18 @@ Which gives us an Asynchronous-like code.
 Queues the callback in connection with page rendering (actually, before the render), usually 60 frames a second (normal frequency of a display). `setTimeout` tasks in comparison, run every time the execution stack becomes empty, so doing things, that a user can't see.
 
 ## Microtasks
-Message queue tasks: The event loop executes only one task, if it queues a new task, the loop places it at the end of the stack and proceeds its way until the next lap.
+### Message queue tasks
+An Event loop executes only one task, if it queues a new task, the Event loop places it at the end of a Stack and proceeds its way until the next lap.
 
-Animation callbacks (requestAnimationFrame): the event loop executes each of the queued tasks, places new tasks at the end of the stack and proceeds its way until the next lap.
+### Animation callbacks (requestAnimationFrame)
+An Event loop executes each of queued tasks, places new tasks at the end of a Stack and proceeds its way until the next lap.
 
-Microtasks: The event loop executes all of the queued tasks, including every new task, until the job done. Then it proceeds its way.
+### Microtasks
+An Event loop executes all of queued tasks, including every new task, until the job is done. Then it proceeds its way.
 
-user click and manual click events are different
+### Notes:
+User click and manual click events are handled differently.
 
-### Examples
 This, will set only the last transform value:
 ```js
 button.addEventListener('click', () => {
@@ -483,8 +486,6 @@ button.addEventListener('click', () => {
   box.style.transform = 'translateX(500px)';
 })
 ```
-
-**Notes**:
 
 A setTimeout function correlates to Web API and hence is executed asynchronously. And because of that, it's time (used as a second parameter) means the minimum delay after which the message will actually be pushed into the queue.
 
@@ -560,7 +561,7 @@ function makeUser() {
 
 let user = makeUser();
 
-console.log(user.ref); // undefined (take from function LE)
+console.log(user.ref); // undefined (taken from function LE)
 ```
 
 ```javascript
@@ -589,18 +590,18 @@ To use a closure, define a function inside another function and expose it. To ex
 The inner function will have access to the variables in the outer function scope, even after the outer function has been returned (it'll have a reference to the outer function's LE).
 
 ```js
-const getSecret = (secret) => {
+const createObjectWithSecret = (secret) => {
   return {
-    get: () => secret
+    getSecret: () => secret
   };
 };
 
 test('Closure for object privacy.', assert => {
-  const msg = '.get() should have access to the closure.';
+  const msg = '.getSecret() should have access to the closure.';
   const expected = 1;
-  const obj = getSecret(1);
+  const objWithSecret = createObjectWithSecret(1);
 
-  const actual = obj.get();
+  const actual = objWithSecret.getSecret();
 
   try {
     assert.ok(secret, 'This throws an error.');
@@ -617,12 +618,12 @@ test('Closure for object privacy.', assert => {
 ## Program execution
 It's an important thing to understand how program is executed in JavaScript, this will help you to grasp *Hoisting* and detect errors in the code, correlated to variables.
 
-In the essence, the section will show you how JS engines use a Lexical Environment, an Execution Context and an Execution Stack during evaluation of a program.
+In the essence, the section will show you how JS engines use a Lexical Environment, an Execution Context and Execution Stack during evaluation of a program.
 
 There are 2 phases of a program execution: the Creation phase and the Execution phase.
 
 ### Creation phase
-During that phase, an Execution Context with a Lexical Environment are created and the Environment Record is pre-populated with all identifiers (variables, functions, etc.) of the context. Then the Execution Context is put into an Execution Stack.
+During that phase, an Execution Context with a Lexical Environment are created and the Environment Record is pre-populated with all identifiers (variables, functions, etc.) of the context. Then the Execution Context is put into Execution Stack.
 
 Variables are initialized first, then functions (so that a function would rewrite the variable with the same name). Function declarations are declared and initialized (function name and body are stored in the memory). Variables (including function expressions, classes expressions, etc.) too, but: `var` variables are assigned with `undefined` value, `let` and `const` variables with `uninitialized` state.
 
@@ -632,7 +633,7 @@ The process is called the **Hoisting**. 'Cause, so-called action can help you vi
 
 [Additional examples are here](./hoisting_summary.js)
 
-Describe behavior of typeof operator.
+Describe the behavior of typeof operator.
 
 ### Execution phase
 During this phase, execution of the code happens. Code is evaluated line by line. And every necessary execution information is stored in the Execution Context (current line of the code, for example).
@@ -874,7 +875,7 @@ function myFunction() {
 
 obj.subObj = {myMethod: myFunction, prop: 42};
 
-console.log(obj.subObj.myMethod()); // 42
+console.log(obj.subObj.myMethod()); // 42 ('this' equals to the object before the dot)
 ```
 
 ##### Calling a method of a prototype:
@@ -890,7 +891,7 @@ console.log(p.f()); // 5
 The same is true for `getter/setter` accessor properties.
 
 ### Constructor invocation
-When a function is called with `new` operator, its `this` identifier will be set to an object, created during that call:
+When a function is called with the `new` operator, its `this` identifier will be set to an object, created during that call:
 ```javascript
 function User(name) {
   // this = {}; (implicitly)
@@ -1055,8 +1056,8 @@ let promise = new Promise(function(resolve, reject) {
 
 // resolve runs the first function in .then
 promise.then(
-  result => alert(result), // shows "done!" after 1 second
-  error => alert(error) // doesn't run
+  (result) => alert(result), // shows "done!" after 1 second
+  (error) => alert(error) // doesn't run
 );
 ```
 
@@ -1093,6 +1094,10 @@ Promise.all will wait until every promise isn't settled and then will pass an ar
 Promise.race, on the other hand, runs as soon as any of the promises is settled and will pass that promise's result or error, accordingly.
 
 ## Draft
+Think from the JS engine perspective in order to understand program execution phases.
+
+Think from the JS creator perspective in order to understand types handling.
+
 The function declaration becoming block scoped, if used in strict mode.
 
 Рекурсия — это функция вызывающая сама себя.
