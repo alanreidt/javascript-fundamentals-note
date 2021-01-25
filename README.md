@@ -1143,6 +1143,38 @@ for...in loop выводит как свойства объекта, так и �
 
 The quirk with prototypes in Javascript is that as `[[Prototype]]` stores a reference to an object, the object can be mutated and this would affect the inheritance chain.
 
+### Map and Set
+Cannot use iterable from a Map (probably and from a Set too) in an array's method borrowing technique.
+
+For example:
+```js
+const costByFruit = new Map([
+  ['banana', 3],
+  ['apple', 4],
+  ['orange', 5],
+]);
+
+const fruits = Array.prototype.map.call(
+  costByFruit,
+  ([fruit, cost]) => fruit,
+);
+
+console.log(fruits); // [] — not what is expected
+```
+
+Use `Array.from` or spread your map (`[...map]`) to solve this:
+```js
+const costByFruit = new Map([
+  ['banana', 3],
+  ['apple', 4],
+  ['orange', 5],
+]);
+
+const fruits = [...costByFruit].map(([fruit, cost]) => fruit);
+
+console.log(fruits); // ['banana', 'apple', 'orange']
+```
+
 ## Sources
 - [JavaScript Info Tutorial](https://javascript.info/)
 - [How JavaScript Works](https://medium.com/better-programming/how-javascript-works-1706b9b66c4d) article on Medium.
