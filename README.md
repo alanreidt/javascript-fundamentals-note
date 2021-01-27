@@ -1174,6 +1174,8 @@ const fruits = [...costByFruit].map(([fruit, cost]) => fruit);
 
 console.log(fruits); // ['banana', 'apple', 'orange']
 ```
+#### Notes
+`Object.keys()/.values()/.entries()` methods return “real” array objects, not just an iterable. That’s mainly for historical reasons.
 
 ## Sources
 - [JavaScript Info Tutorial](https://javascript.info/)
